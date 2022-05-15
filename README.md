@@ -10,6 +10,7 @@ NodeJS Express Web Server that provide api to validate IBAN
     │   ├── api                 # Load and stress tests
     │   ├── config              # configuration file i.e. swagger.
     │   ├── functions           # contains methods to be used in api's. 
+    │   ├── localization        # contains language specific translations.
     │   ├── app.js              # Express server setup
     │   ├── index.js            # configuration for swagger.
     │   └── middleware.js       # api middleware to handle where route throws error or is not found.
