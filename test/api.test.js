@@ -1,5 +1,5 @@
 const request = require('supertest');
-
+const en = require('../src/localization/en');
 const app = require('../src/app');
 
 describe('GET Api Status Check', () => {
@@ -28,24 +28,33 @@ describe('POST IBAN Validation', () => {
     'SE4550000000058398257466'
   ];
 
-  it('responds with a true message', (done) => {
+  it('responds with a iban is valid message', (done) => {
     validDummyIBANs.forEach((iban) => {
       request(app)
         .post('/api/v1/iban/validate/')
         .send({ iban })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
-        .expect(200, { message: 'IBAN is valid.' }, done);
+        .expect(200, { message: en('iban.valid') }, done);
     });
   });
 
-  it('responds with IBAN is valid', (done) => {
+  it('responds with IBAN is invalid', (done) => {
     request(app)
       .post('/api/v1/iban/validate/')
       .set('Accept', 'application/json')
       .send({ iban: 'AE070331234567890123' })
       .expect('Content-Type', /json/)
-      .expect(200, { message: 'IBAN is invalid.' }, done);
+      .expect(200, { message: en('iban.invalid') }, done);
+  });
+
+  it('responds with a invalid', (done) => {
+    request(app)
+      .post('/api/v1/iban/validate/')
+      .send({ iban: 'AE1603514110019554580202' })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, { message: en('iban.invalid') }, done);
   });
 });
 
@@ -56,7 +65,7 @@ describe('POST IBAN Route Validation', () => {
       .set('Accept', 'application/json')
       .send({ iban: '123' })
       .expect('Content-Type', /json/)
-      .expect(400, { message: 'IBAN cannot be more than 15 letters.' }, done);
+      .expect(400, { message: en('validation.min.length') }, done);
   });
 
   it('responds with IBAN cannot be more than 34 letters', (done) => {
@@ -65,7 +74,7 @@ describe('POST IBAN Route Validation', () => {
       .set('Accept', 'application/json')
       .send({ iban: 'AE070331234567890123456123123312313123123' })
       .expect('Content-Type', /json/)
-      .expect(400, { message: 'IBAN cannot be more than 34 letters.' }, done);
+      .expect(400, { message: en('validation.max.length') }, done);
   });
 
   it('responds with IBAN must only contain alpha numeric characters', (done) => {
@@ -74,10 +83,6 @@ describe('POST IBAN Route Validation', () => {
       .set('Accept', 'application/json')
       .send({ iban: 'ABS ASAA ASD ASD SAD ASD ASD ASD ASD' })
       .expect('Content-Type', /json/)
-      .expect(
-        400,
-        { message: 'IBAN must only contain alpha numeric characters.' },
-        done
-      );
+      .expect(400, { message: en('validation.alphaNumeric') }, done);
   });
 });

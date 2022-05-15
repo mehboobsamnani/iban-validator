@@ -3,6 +3,7 @@ const Joi = require('joi');
 
 const router = express.Router();
 const validateIban = require('../functions/iban');
+const en = require('../localization/en');
 
 // customized validation message based on locale
 const schema = Joi.object({
@@ -13,9 +14,9 @@ const schema = Joi.object({
     .max(34)
     .required()
     .messages({
-      'string.alphanum': 'IBAN must only contain alpha numeric characters.',
-      'string.min': 'IBAN cannot be more than 15 letters.',
-      'string.max': 'IBAN cannot be more than 34 letters.',
+      'string.alphanum': en('validation.alphaNumeric'),
+      'string.min': en('validation.min.length'),
+      'string.max': en('validation.max.length'),
     })
 });
 
@@ -103,7 +104,7 @@ router.post('/validate', async (req, res) => {
     if (validateIban(iban)) {
       response = true;
     }
-    res.json({ message: response ? 'IBAN is valid.' : 'IBAN is invalid.' });
+    res.json({ message: response ? en('iban.valid') : en('iban.invalid') });
   } catch (error) {
     res.status(400);
     res.json({ message: error.message });
