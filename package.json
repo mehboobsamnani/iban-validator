@@ -9,6 +9,10 @@
     "lint": "eslint --fix src",
     "test": "jest --coverage"
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
+  },
   "keywords": [],
   "author": "Mehboob Mansoor Ali",
   "repository": {

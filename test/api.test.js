@@ -2,24 +2,27 @@ const request = require('supertest');
 
 const app = require('../src/app');
 
-describe('GET /api/v1', () => {
-  it('responds with a json message', (done) => {
+describe('GET Api Status Check', () => {
+  it('responds with a true message', (done) => {
     request(app)
-      .get('/api/v1')
+      .get('/api/v1/status')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, {
-        message: 'API - 👋🌎🌍🌏'
-      }, done);
+      .expect(200)
+      .then((response) => {
+        expect(response.body.message).toEqual('OK');
+        done();
+      });
   });
 });
 
-describe('GET /api/v1/emojis', () => {
-  it('responds with a json message', (done) => {
+describe('POST IBAN Validation', () => {
+  it('responds with ', (done) => {
     request(app)
-      .get('/api/v1/emojis')
+      .post('/api/v1/iban/validate/')
+      .send({ iban: 'DUMMYIBAN' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, ['😀', '😳', '🙄'], done);
+      .expect(200, '"DUMMYIBAN is valid"', done);
   });
 });
