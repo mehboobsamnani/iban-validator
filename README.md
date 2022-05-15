@@ -91,6 +91,18 @@ docker run -p 4000:3000 -d <your username>/iban-validator
 Open in your browser
 
 - http://localhost:4000
+
+## RESTful API
+* /api/v1/iban/validate   -X HTTP POST (To Validate IBAN)
+##### Curl
+```
+curl --location --request POST 'http://localhost:3000/api/v1/iban/validate/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "iban": "SE4550000000058398257466"
+}'
+```
+
 ## API Documentation
 
 Api is documented using swagger jsdoc and swagger ui, which can be view on below url.
