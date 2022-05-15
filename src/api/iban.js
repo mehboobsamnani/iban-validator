@@ -2,6 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 
 const router = express.Router();
+const validateIban = require('../functions/iban');
 
 // customized validation message based on locale
 const schema = Joi.object({
@@ -21,7 +22,11 @@ const schema = Joi.object({
 router.post('/validate', async (req, res) => {
   try {
     const { iban } = await schema.validateAsync(req.body);
-    res.json(`${iban} is valid`);
+    let response = false;
+    if (validateIban(iban)) {
+      response = true;
+    }
+    res.json({ message: response ? 'IBAN is valid.' : 'IBAN is invalid.' });
   } catch (error) {
     res.status(400);
     res.json({ message: error.message });
