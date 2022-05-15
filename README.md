@@ -95,7 +95,7 @@ Open in your browser
 
 Api is documented using swagger jsdoc and swagger ui, which can be view on below url.
 
-- http://localhost:$PORT/docs
+- http://localhost:3000/docs
 
 ## Lint
 
