@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const middlewares = require('./middlewares');
 const api = require('./api');
+const { swaggerUIServe, swaggerUISetup } = require('./config/swagger');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1', api);
+app.use('/docs', swaggerUIServe, swaggerUISetup);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
