@@ -1,31 +1,44 @@
 # IBAN Validator
+
 NodeJS Express Web Server that provide api to validate IBAN
 
-Includes API Server utilities:
-
-* [helmet](https://www.npmjs.com/package/helmet)
-  * Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
-* [dotenv](https://www.npmjs.com/package/dotenv)
-  * Dotenv is a zero-dependency module that loads environment variables from a `.env` file into `process.env`
-* [joi](https://www.npmjs.com/package/joi)
-  * The most powerful schema description language and data validator for JavaScript.
-  
-Development utilities:
-
-* [nodemon](https://www.npmjs.com/package/nodemon)
-  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-* [eslint](https://www.npmjs.com/package/eslint)
-  * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-* [jest](https://www.npmjs.com/package/jest)
-  * A comprehensive JavaScript testing solution. Works out of the box for most JavaScript projects
-* [supertest](https://www.npmjs.com/package/supertest)
-  * HTTP assertions made easy via superagent.
+## Directory Layout
+    .
+    ├── ...
+    ├── coverage                # will be created once run test command , contains html files that are generate based on test and display test coverage.
+    ├── src                     # Source code directory
+    │   ├── api                 # Load and stress tests
+    │   ├── config              # configuration file i.e. swagger.
+    │   ├── functions           # contains methods to be used in api's. 
+    │   ├── app.js              # Express server setup
+    │   ├── index.js            # configuration for swagger.
+    │   └── middleware.js       # api middleware to handle where route throws error or is not found.
+    ├── test                    # Test files (alternatively `spec` or `tests`)
+    ├── .eslintrc.js            # ES Lint configuration
+    └── package.json            # Dependences
 
 ## Setup
 
 ```
 npm install
 ```
+## Development
+
+To run application
+
+```
+npm run dev
+```
+
+Open in your browser
+
+- http://localhost:3000
+
+## API Documentation
+
+Api is documented using swagger jsdoc and swagger ui, which can be view on below url.
+
+- http://localhost:3000/docs
 
 ## Lint
 
@@ -37,10 +50,4 @@ npm run lint
 
 ```
 npm run test
-```
-
-## Development
-
-```
-npm run dev
 ```
