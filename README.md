@@ -27,6 +27,7 @@ npm install
 ## Run Application
 
 ### Using Docker
+
 1. Build image using local dockerfile.
 ```
 docker build . -t <your username>/iban-validator
@@ -70,7 +71,6 @@ Keep-Alive: timeout=5
 ### Development
 
 To run application
-
 ```
 npm run dev
 ```
@@ -79,11 +79,23 @@ Open in your browser
 
 - http://localhost:3000
 
+### Setting Custom Port
+you can pass custom port for running locally or docker image by
+```
+PORT=4000 npm run dev
+```
+also while running docker image pass desired port mapped to image port 3000.
+```
+docker run -p 4000:3000 -d <your username>/iban-validator
+```
+Open in your browser
+
+- http://localhost:4000
 ## API Documentation
 
 Api is documented using swagger jsdoc and swagger ui, which can be view on below url.
 
-- http://localhost:3000/docs
+- http://localhost:$PORT/docs
 
 ## Lint
 

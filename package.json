@@ -4,8 +4,8 @@
   "description": "NodeJS Express Web Server that provide api to validate IBAN",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node src/index.js $PORT",
+    "dev": "nodemon src/index.js $PORT",
     "lint": "eslint --fix src",
     "test": "jest --coverage"
   },
