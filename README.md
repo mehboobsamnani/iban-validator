@@ -26,6 +26,10 @@ npm install
 
 ## Run Application
 
+create .env file from .env_local
+```
+cp .env_local .env
+```
 ### Using Docker
 
 1. Build image using local dockerfile.

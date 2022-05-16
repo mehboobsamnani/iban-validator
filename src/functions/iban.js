@@ -90,8 +90,8 @@ const CODE_LENGTHS = {
  * @param iban
  * @returns {number}
  */
-function mod97(string) {
-  let remainder = string;
+function mod97(iban) {
+  let remainder = iban;
   let block;
 
   while (remainder.length > 2) {
